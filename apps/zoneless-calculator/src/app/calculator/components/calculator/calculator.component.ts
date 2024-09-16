@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, viewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  viewChildren,
+} from '@angular/core';
 import { CalculatorButtonComponent } from '@components/calculator-button/calculator-button.component';
 import { keyEquivalent } from '../../utils/calculator.utils';
 
@@ -13,7 +17,8 @@ import { keyEquivalent } from '../../utils/calculator.utils';
   },
 })
 export class CalculatorComponent {
-  buttons = viewChildren(CalculatorButtonComponent)
+  buttons = viewChildren(CalculatorButtonComponent);
+
   handleClick(key: string) {
     console.log({ key });
   }
@@ -21,6 +26,6 @@ export class CalculatorComponent {
   handleKeyboardEvent(event: KeyboardEvent) {
     const key = keyEquivalent.get(event.key) || event.key;
     this.handleClick(key);
-    this.buttons().forEach(button => button.keyboardPressed(key));
+    this.buttons().forEach((button) => button.keyboardPressed(key));
   }
 }

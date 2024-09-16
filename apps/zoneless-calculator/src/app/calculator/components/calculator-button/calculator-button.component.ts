@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   input,
   output,
   signal,
@@ -26,8 +25,8 @@ export class CalculatorButtonComponent {
   isCommand = input(false, { transform: transformBooleanValue });
   isDoubleSize = input(false, { transform: transformBooleanValue });
   onClick = output<string>();
-  protected isPressed = signal(false);
   contentValue = viewChild<ElementRef<HTMLButtonElement>>('button');
+  protected isPressed = signal(false);
 
   handleClick() {
     if (!this.contentValue()?.nativeElement) return;
