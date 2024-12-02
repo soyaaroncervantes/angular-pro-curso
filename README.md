@@ -4,7 +4,7 @@ Este repositorio está basado en su totatlidad en el curso de Angular Pro de [De
 Si tienen alguna duda acerca de este curso, favor de checar el curso original.
 
 
-### Traducción
+### Translation
 
-this repo is based on the entirety of the Angular Pro course from [DevTalles](https://cursos.devtalles.com/courses/take/angular-pro).
+This repo is based on the entirety of the Angular Pro course from [DevTalles](https://cursos.devtalles.com/courses/take/angular-pro).
 If you have any questions about this course, please check the original course.
