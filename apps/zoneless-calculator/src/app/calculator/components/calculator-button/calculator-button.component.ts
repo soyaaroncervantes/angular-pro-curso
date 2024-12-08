@@ -22,23 +22,28 @@ import { transformBooleanValue } from '../../utils/calculator.utils';
   },
 })
 export class CalculatorButtonComponent {
-  isCommand = input(false, { transform: transformBooleanValue });
-  isDoubleSize = input(false, { transform: transformBooleanValue });
-  onClick = output<string>();
-  contentValue = viewChild<ElementRef<HTMLButtonElement>>('button');
+  readonly isCommand = input(false, { transform: transformBooleanValue });
+  readonly isDoubleSize = input(false, { transform: transformBooleanValue });
+  protected readonly onClick = output<string>();
+  protected readonly contentValue =
+    viewChild<ElementRef<HTMLButtonElement>>('button');
   protected isPressed = signal(false);
-
-  handleClick() {
-    if (!this.contentValue()?.nativeElement) return;
-    const value = this.contentValue()!.nativeElement.innerText.trim();
-    this.onClick.emit(value);
-  }
 
   keyboardPressed(key: string) {
     if (!this.contentValue()) return;
     const value = this.contentValue()?.nativeElement.innerText.trim();
+
     if (value !== key) return;
+
     this.isPressed.set(true);
     setTimeout(() => this.isPressed.set(false), 100);
+  }
+
+  protected handleClick() {
+    if (!this.contentValue()?.nativeElement) return;
+    const value = this.contentValue()?.nativeElement.innerText.trim();
+
+    if (!value) return;
+    this.onClick.emit(value);
   }
 }
