@@ -16,5 +16,13 @@
     "baseUrl": ".",
     "paths": {}
   },
-  "exclude": ["node_modules", "tmp", ".nx", ".angular",  ".vscode", ".idea", ".github" ],
+  "exclude": [
+    "node_modules",
+    "tmp",
+    ".nx",
+    ".angular",
+    ".vscode",
+    ".idea",
+    ".github"
+  ]
 }
