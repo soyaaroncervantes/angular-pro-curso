@@ -1,4 +1,4 @@
-export interface CalculatorBuilder<T> {
+export interface CalculatorBuilderInterface<T> {
   calculateResult(): void;
   reset(): void;
   validateNumber(value: T): void;

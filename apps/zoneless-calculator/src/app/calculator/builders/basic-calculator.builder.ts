@@ -1,4 +1,4 @@
-import { CalculatorBuilder } from './calculator.builder';
+import { CalculatorBuilderInterface } from './calculator-builder.interface';
 import { Injectable, signal } from '@angular/core';
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -8,7 +8,7 @@ const specialOperators = ['C', '+/-', '%', '=', '.', 'Backspace'];
 @Injectable({
   providedIn: 'root'
 })
-export class BasicCalculatorBuilder implements CalculatorBuilder<string> {
+export class BasicCalculatorBuilder implements CalculatorBuilderInterface<string> {
   resultText = signal('0');
   subResultText = signal('0');
   lastOperator = signal('+');
