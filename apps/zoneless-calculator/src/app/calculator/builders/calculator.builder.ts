@@ -1,4 +1,4 @@
-export abstract class CalculatorBaseBuilder<T> {
+export abstract class CalculatorBuilder<T> {
   abstract calculateResult(): void;
   abstract reset(): void;
   abstract validateNumber(value: T): void;

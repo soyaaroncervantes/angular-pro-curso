@@ -1,7 +1,11 @@
-import { CalculatorBaseBuilder } from '../builders/calculator-base.builder';
+import { CalculatorBuilder } from '../builders/calculator.builder';
+import { Injectable } from '@angular/core';
 
-export class CalculatorDirector<T> {
-  constructor(builder: CalculatorBaseBuilder<T>, value: T) {
+@Injectable({
+  providedIn: 'root',
+})
+export class CalculatorDirector {
+  makeSimpleCalculator<T>(builder: CalculatorBuilder<T>, value: T) {
     builder.validateValue(value);
     builder.validateSpecialOperators(value);
     builder.validateOperators(value);

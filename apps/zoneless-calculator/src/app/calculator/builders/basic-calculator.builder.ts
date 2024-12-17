@@ -1,4 +1,4 @@
-import { CalculatorBaseBuilder } from '../builders/calculator-base.builder';
+import { CalculatorBuilder } from './calculator.builder';
 import { Injectable, signal } from '@angular/core';
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -8,7 +8,7 @@ const specialOperators = ['C', '+/-', '%', '=', '.', 'Backspace'];
 @Injectable({
   providedIn: 'root'
 })
-export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
+export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
   resultText = signal('0');
   subResultText = signal('0');
   lastOperator = signal('+');
@@ -35,13 +35,11 @@ export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
     this.resultText.set(result.toString());
     this.subResultText.set('0');
   }
-
   override reset(): void {
     this.resultText.set('0');
     this.subResultText.set('0');
     this.lastOperator.set('+');
   }
-
   override validateNumber(value: string): void {
     // manejo del cero inicial
     if (
@@ -66,7 +64,6 @@ export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
       this.resultText.update((x) => `${x}${value}`);
     }
   }
-
   override validateOperators(value: string): void {
     // aplicar operador
     if (operators.includes(value)) {
@@ -77,7 +74,6 @@ export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
       return;
     }
   }
-
   override validateSpecialOperators(value: string): void {
     if (value === '=') {
       this.calculateResult();
@@ -122,7 +118,6 @@ export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
       return;
     }
   }
-
   override validateValue(value: string): void {
     if (![...numbers, ...operators, ...specialOperators].includes(value)) {
       console.error('Invalid input', value);
