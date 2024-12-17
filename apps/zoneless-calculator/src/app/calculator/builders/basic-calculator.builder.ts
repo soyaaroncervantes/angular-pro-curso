@@ -8,12 +8,12 @@ const specialOperators = ['C', '+/-', '%', '=', '.', 'Backspace'];
 @Injectable({
   providedIn: 'root'
 })
-export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
+export class BasicCalculatorBuilder implements CalculatorBuilder<string> {
   resultText = signal('0');
   subResultText = signal('0');
   lastOperator = signal('+');
 
-  override calculateResult(): void {
+  calculateResult(): void {
     const number1 = parseFloat(this.subResultText());
     const number2 = parseFloat(this.resultText());
     let result = 0;
@@ -35,12 +35,12 @@ export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
     this.resultText.set(result.toString());
     this.subResultText.set('0');
   }
-  override reset(): void {
+  reset(): void {
     this.resultText.set('0');
     this.subResultText.set('0');
     this.lastOperator.set('+');
   }
-  override validateNumber(value: string): void {
+  validateNumber(value: string): void {
     // manejo del cero inicial
     if (
       value === '0' &&
@@ -64,7 +64,7 @@ export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
       this.resultText.update((x) => `${x}${value}`);
     }
   }
-  override validateOperators(value: string): void {
+  validateOperators(value: string): void {
     // aplicar operador
     if (operators.includes(value)) {
       // this.calculateResult();
@@ -74,7 +74,7 @@ export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
       return;
     }
   }
-  override validateSpecialOperators(value: string): void {
+  validateSpecialOperators(value: string): void {
     if (value === '=') {
       this.calculateResult();
       return;
@@ -118,7 +118,7 @@ export class BasicCalculatorBuilder extends CalculatorBuilder<string> {
       return;
     }
   }
-  override validateValue(value: string): void {
+  validateValue(value: string): void {
     if (![...numbers, ...operators, ...specialOperators].includes(value)) {
       console.error('Invalid input', value);
       return;

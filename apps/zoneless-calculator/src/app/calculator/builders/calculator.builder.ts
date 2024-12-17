@@ -1,8 +1,8 @@
-export abstract class CalculatorBuilder<T> {
-  abstract calculateResult(): void;
-  abstract reset(): void;
-  abstract validateNumber(value: T): void;
-  abstract validateOperators(value: T): void;
-  abstract validateSpecialOperators(value: T): void;
-  abstract validateValue(value: T): void;
+export interface CalculatorBuilder<T> {
+  calculateResult(): void;
+  reset(): void;
+  validateNumber(value: T): void;
+  validateOperators(value: T): void;
+  validateSpecialOperators(value: T): void;
+  validateValue(value: T): void;
 }
