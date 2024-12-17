@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import { CalculatorButtonComponent } from '@components/calculator-button/calculator-button.component';
 import { keyEquivalent } from '../../utils/calculator.utils';
-import { CalculatorService } from '@services/calculator.service';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { CalculatorDirector } from '../../directors/calculator.director';
+import { BasicCalculatorService } from '@services/basic-calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -22,20 +23,20 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 })
 export class CalculatorComponent {
   protected readonly buttons = viewChildren(CalculatorButtonComponent);
-  private readonly calculatorService = inject(CalculatorService);
+  private readonly basicCalculatorService = inject(BasicCalculatorService);
   protected readonly resultText = computed(() =>
-    this.calculatorService.resultText()
+    this.basicCalculatorService.resultText()
   );
   protected readonly subResultText = computed(() =>
-    this.calculatorService.subResultText()
+    this.basicCalculatorService.subResultText()
   );
   protected readonly lastOperator = computed(() =>
-    this.calculatorService.lastOperator()
+    this.basicCalculatorService.lastOperator()
   );
 
   protected handleClick = (value: string) => {
     const key = keyEquivalent.get(value) || value;
-    this.calculatorService.constructNumber(key);
+    new CalculatorDirector(this.basicCalculatorService, key);
   };
 
   protected handleKeyboardEvent(key: string) {

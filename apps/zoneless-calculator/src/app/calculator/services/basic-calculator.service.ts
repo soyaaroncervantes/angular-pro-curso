@@ -1,3 +1,4 @@
+import { CalculatorBaseBuilder } from '../builders/calculator-base.builder';
 import { Injectable, signal } from '@angular/core';
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -5,21 +6,14 @@ const operators = ['+', '-', '*', '/'];
 const specialOperators = ['C', '+/-', '%', '=', '.', 'Backspace'];
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class CalculatorService {
+export class BasicCalculatorService extends CalculatorBaseBuilder<string> {
   resultText = signal('0');
   subResultText = signal('0');
   lastOperator = signal('+');
 
-  constructNumber(value: string): void {
-    this.validateValue(value);
-    this.validateSpecialOperators(value);
-    this.validateOperators(value);
-    this.validateNumber(value);
-  }
-
-  private calculateResult(): void {
+  override calculateResult(): void {
     const number1 = parseFloat(this.subResultText());
     const number2 = parseFloat(this.resultText());
     let result = 0;
@@ -42,17 +36,56 @@ export class CalculatorService {
     this.subResultText.set('0');
   }
 
-  private validateSpecialOperators(value: string): void {
+  override reset(): void {
+    this.resultText.set('0');
+    this.subResultText.set('0');
+    this.lastOperator.set('+');
+  }
 
+  override validateNumber(value: string): void {
+    // manejo del cero inicial
+    if (
+      value === '0' &&
+      (this.resultText() === '0' || this.resultText() === '-0')
+    ) {
+      return;
+    }
+
+    // validar numeros
+    if (numbers.includes(value)) {
+      if (this.resultText() === '0') {
+        this.resultText.set(value);
+        return;
+      }
+
+      if (this.resultText() === '-0') {
+        this.resultText.set(`-${value}`);
+        return;
+      }
+
+      this.resultText.update((x) => `${x}${value}`);
+    }
+  }
+
+  override validateOperators(value: string): void {
+    // aplicar operador
+    if (operators.includes(value)) {
+      // this.calculateResult();
+      this.lastOperator.set(value);
+      this.subResultText.set(this.resultText());
+      this.resultText.set('0');
+      return;
+    }
+  }
+
+  override validateSpecialOperators(value: string): void {
     if (value === '=') {
       this.calculateResult();
       return;
     }
 
     if (value === 'C') {
-      this.resultText.set('0');
-      this.subResultText.set('0');
-      this.lastOperator.set('+');
+      this.reset();
       return;
     }
 
@@ -89,41 +122,8 @@ export class CalculatorService {
       return;
     }
   }
-  private validateOperators(value: string): void {
-    // aplicar operador
-    if (operators.includes(value)) {
-      // this.calculateResult();
-      this.lastOperator.set(value);
-      this.subResultText.set(this.resultText());
-      this.resultText.set('0');
-      return;
-    }
-  }
-  private validateNumber(value: string): void {
-    // manejo del cero inicial
-    if (
-      value === '0' &&
-      (this.resultText() === '0' || this.resultText() === '-0')
-    ) {
-      return;
-    }
 
-    // validar numeros
-    if (numbers.includes(value)) {
-      if (this.resultText() === '0') {
-        this.resultText.set(value);
-        return;
-      }
-
-      if (this.resultText() === '-0') {
-        this.resultText.set(`-${value}`);
-        return;
-      }
-
-      this.resultText.update((x) => `${x}${value}`);
-    }
-  }
-  private validateValue(value: string): void {
+  override validateValue(value: string): void {
     if (![...numbers, ...operators, ...specialOperators].includes(value)) {
       console.error('Invalid input', value);
       return;
@@ -134,6 +134,6 @@ export class CalculatorService {
       console.warn('Max length reached');
       return;
     }
-
   }
+
 }
