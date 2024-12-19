@@ -53,6 +53,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-preset-angular": "~14.1.0",
+    "ng-mocks": "^14.13.1",
     "nx": "19.7.3",
     "postcss": "^8.4.5",
     "prettier": "^2.6.2",
