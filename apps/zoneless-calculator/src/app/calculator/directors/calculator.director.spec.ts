@@ -8,13 +8,11 @@ interface SetupTest {
 
 describe('CalculatorDirectorService', () => {
   let sr: SetupTest;
-  beforeEach(() => (sr = setup()));
+  beforeEach(() => sr = setup());
 
   it('should be created', () => expect(sr.service).toBeTruthy());
-  it('should call builder steps, when director call makeSimpleCalculator', () => {
-
+  it('should call builder steps, when makeSimpleCalculator', () => {
     const builder = TestBed.inject(BasicCalculatorBuilder);
-
     const validateNumberSpy = jest.spyOn(builder, 'validateNumber');
     const validateOperatorsSpy = jest.spyOn(builder, 'validateOperators');
     const validateSpecialOperatorsSpy = jest.spyOn(builder, 'validateSpecialOperators');
@@ -29,7 +27,6 @@ describe('CalculatorDirectorService', () => {
   });
 
   function setup(): SetupTest {
-    TestBed.configureTestingModule({});
     const service = TestBed.inject(CalculatorDirector);
     return { service };
   }
