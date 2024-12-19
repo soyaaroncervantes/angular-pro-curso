@@ -1,9 +1,6 @@
 import { CalculatorBuilderInterface } from './calculator-builder.interface';
 import { Injectable, signal } from '@angular/core';
-
-const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const operators = ['+', '-', '*', '/'];
-const specialOperators = ['C', '+/-', '%', '=', '.', 'Backspace'];
+import { numbers, operators, specialOperators } from '../utils/calculator.utils';
 
 @Injectable({
   providedIn: 'root'
