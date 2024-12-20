@@ -2,9 +2,12 @@
   "compilerOptions": {
     "baseUrl" : ".",
     "paths" : {
-      "@components/*": ["src/app/calculator/components/*"],
-      "@pages/*": ["src/app/calculator/pages/*"],
-      "@services/*": ["src/app/calculator/services/*"],
+      "@components/*": ["src/app/calculator/calculator/components/*"],
+      "@pages/*": ["src/app/calculator/calculator/pages/*"],
+      "@utils/*": ["src/app/calculator/calculator/utils/*"],
+      "@directors/*": ["src/app/calculator/calculator/directors/*"],
+      "@builders/*": ["src/app/calculator/calculator/builders/*"],
+      "@test/*": ["src/test/*"],
     },
     "target": "es2022",
     "esModuleInterop": true,
