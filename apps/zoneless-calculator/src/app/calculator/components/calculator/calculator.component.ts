@@ -12,14 +12,13 @@ import { CalculatorDirector } from '../../directors/calculator.director';
 import { BasicCalculatorBuilder } from '../../builders/basic-calculator.builder';
 
 @Component({
-  selector: 'app-calculator',
-  standalone: true,
-  templateUrl: './calculator.component.html',
-  imports: [CalculatorButtonComponent, NgTemplateOutlet, NgClass],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(document:keyup)': 'handleKeyboardEvent($event.key)',
-  },
+    selector: 'app-calculator',
+    templateUrl: './calculator.component.html',
+    imports: [CalculatorButtonComponent, NgTemplateOutlet, NgClass],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '(document:keyup)': 'handleKeyboardEvent($event.key)',
+    }
 })
 export class CalculatorComponent {
   protected readonly buttons = viewChildren(CalculatorButtonComponent);
