@@ -38,13 +38,13 @@ export class BasicCalculatorBuilder implements CalculatorBuilderInterface<string
     this.lastOperator.set('+');
   }
   validateNumber(value: string): void {
+    if (value.length <= 0) return;
+
     // manejo del cero inicial
     if (
       value === '0' &&
       (this.resultText() === '0' || this.resultText() === '-0')
-    ) {
-      return;
-    }
+    ) return;
 
     // validar numeros
     if (numbers.includes(value)) {
