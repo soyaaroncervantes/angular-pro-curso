@@ -1,17 +1,11 @@
 import { CalculatorBuilderInterface } from './calculator-builder.interface';
 import { Injectable, signal } from '@angular/core';
-import {
-  numbers,
-  operators,
-  specialOperators,
-} from '../utils/calculator.utils';
+import { numbers, operators, specialOperators } from '../utils/calculator.utils';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class BasicCalculatorBuilder
-  implements CalculatorBuilderInterface<string>
-{
+export class BasicCalculatorBuilder implements CalculatorBuilderInterface<string> {
   resultText = signal('0');
   subResultText = signal('0');
   lastOperator = signal('+');
@@ -38,13 +32,11 @@ export class BasicCalculatorBuilder
     this.resultText.set(result.toString());
     this.subResultText.set('0');
   }
-
   reset(): void {
     this.resultText.set('0');
     this.subResultText.set('0');
     this.lastOperator.set('+');
   }
-
   validateNumber(value: string): void {
     if (value.length <= 0) return;
 
@@ -52,8 +44,7 @@ export class BasicCalculatorBuilder
     if (
       value === '0' &&
       (this.resultText() === '0' || this.resultText() === '-0')
-    )
-      return;
+    ) return;
 
     // validar numeros
     if (numbers.includes(value)) {
@@ -70,7 +61,6 @@ export class BasicCalculatorBuilder
       this.resultText.update((x) => `${x}${value}`);
     }
   }
-
   validateOperators(value: string): void {
     // aplicar operador
     if (operators.includes(value)) {
@@ -81,7 +71,6 @@ export class BasicCalculatorBuilder
       return;
     }
   }
-
   validateSpecialOperators(value: string): void {
     if (value === '=') {
       this.calculateResult();
@@ -111,8 +100,8 @@ export class BasicCalculatorBuilder
 
     // punto decimal
     if (value === '.' && !this.resultText().includes('.')) {
-      if (this.lastOperator() === value) return;
-      this.resultText.update((value) => value + '.');
+      if(this.lastOperator() === value) return;
+      this.resultText.update(value => value + '.');
       return;
     }
 
@@ -126,13 +115,8 @@ export class BasicCalculatorBuilder
       return;
     }
   }
-
   validateValue(value: string): void {
-    if (
-      !numbers.includes(value) ||
-      !operators.includes(value) ||
-      !specialOperators.includes(value)
-    ) {
+    if (![...numbers, ...operators, ...specialOperators].includes(value)) {
       console.error('Invalid input', value);
       throw new Error('Invalid input');
     }
@@ -143,4 +127,5 @@ export class BasicCalculatorBuilder
       return;
     }
   }
+
 }

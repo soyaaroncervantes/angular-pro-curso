@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { BasicCalculatorBuilder } from './basic-calculator.builder';
-import { expect } from '@playwright/test';
 
 interface SetupTest {
   service: BasicCalculatorBuilder;
@@ -76,6 +75,13 @@ describe('BasicCalculatorBuilderService', () => {
     it('should throw error, when value is not included', () => {
       jest.spyOn(console, 'error').mockImplementation();
       expect(() => sr.service.validateValue('(')).toThrow();
+    });
+
+    it('should show warning, when resultText raised max length', () => {
+      jest.spyOn(console, 'warn').mockImplementation(() => 'warn');
+      sr.service.resultText.set('1234567890');
+      sr.service.validateValue('1');
+      expect(console.warn).toHaveBeenCalled();
     });
   });
 });
