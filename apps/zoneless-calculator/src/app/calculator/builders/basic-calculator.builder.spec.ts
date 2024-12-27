@@ -107,6 +107,11 @@ describe('BasicCalculatorBuilderService', () => {
       sr.service.validateSpecialOperators('=');
       expect(spy).toHaveBeenCalled();
     });
+    it('should call reset when value is C', () => {
+      const spy = jest.spyOn(sr.service, 'reset');
+      sr.service.validateSpecialOperators('C');
+      expect(spy).toHaveBeenCalled();
+    });
     describe('when value is Backspace', () => {
       afterEach(() => {
         sr.service.validateSpecialOperators('Backspace');
@@ -135,16 +140,29 @@ describe('BasicCalculatorBuilderService', () => {
       });
     });
     describe('when value is +/-', () => {
-      beforeEach(() => sr.service.resultText.set('12'));
       it('should add negative sign, when resultText does not contain it', () => {
+        sr.service.resultText.set('12')
         sr.service.validateSpecialOperators('+/-');
         expect(sr.service.resultText()).toBe('-12');
       });
       it('should remove negative sign, when resultText contains it', () => {
+        sr.service.resultText.set('-12')
         sr.service.validateSpecialOperators('+/-');
         expect(sr.service.resultText()).toBe('12');
       });
     })
+    describe('when value is .', () => {
+      it('should not update resultText, when resultText contains a decimal', () => {
+        sr.service.resultText.set('12.5')
+        sr.service.validateSpecialOperators('.');
+        expect(sr.service.resultText()).toBe('12.5');
+      });
+      it('should add decimal, when resultText does not contain it', () => {
+        sr.service.resultText.set('12')
+        sr.service.validateSpecialOperators('.');
+        expect(sr.service.resultText()).toBe('12.');
+      });
+    });
   });
   describe('when calculateResult is raised', () => {
     beforeEach( () => {

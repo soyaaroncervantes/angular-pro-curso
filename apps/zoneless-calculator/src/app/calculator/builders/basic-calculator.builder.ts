@@ -100,7 +100,6 @@ export class BasicCalculatorBuilder implements CalculatorBuilderInterface<string
 
     // punto decimal
     if (value === '.' && !this.resultText().includes('.')) {
-      if(this.lastOperator() === value) return;
       this.resultText.update(value => value + '.');
       return;
     }
