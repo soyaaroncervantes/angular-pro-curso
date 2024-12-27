@@ -127,5 +127,4 @@ export class BasicCalculatorBuilder implements CalculatorBuilderInterface<string
       return;
     }
   }
-
 }
