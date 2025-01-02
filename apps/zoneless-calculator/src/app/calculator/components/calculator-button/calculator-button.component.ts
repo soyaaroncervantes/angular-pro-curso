@@ -24,7 +24,7 @@ import { transformBooleanValue } from '../../utils/calculator.utils';
 export class CalculatorButtonComponent {
   readonly isCommand = input(false, { transform: transformBooleanValue });
   readonly isDoubleSize = input(false, { transform: transformBooleanValue });
-  protected readonly onClick = output<string>();
+  protected readonly clickOutput = output<string>();
   protected readonly contentValue =
     viewChild<ElementRef<HTMLButtonElement>>('button');
   protected isPressed = signal(false);
@@ -44,6 +44,6 @@ export class CalculatorButtonComponent {
     const value = this.contentValue()?.nativeElement.innerText.trim();
 
     if (!value) return;
-    this.onClick.emit(value);
+    this.clickOutput.emit(value);
   }
 }

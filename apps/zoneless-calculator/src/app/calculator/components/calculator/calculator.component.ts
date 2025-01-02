@@ -5,9 +5,9 @@ import {
   inject,
   viewChildren,
 } from '@angular/core';
-import { CalculatorButtonComponent } from '@components/calculator-button/calculator-button.component';
-import { keyEquivalent } from '../../utils/calculator.utils';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { CalculatorButtonComponent } from '../calculator-button/calculator-button.component';
+import { keyEquivalent } from '../../utils/calculator.utils';
 import { CalculatorDirector } from '../../directors/calculator.director';
 import { BasicCalculatorBuilder } from '../../builders/basic-calculator.builder';
 
@@ -41,6 +41,6 @@ export class CalculatorComponent {
 
   protected handleKeyboardEvent(key: string) {
     this.handleClick(key);
-    this.buttons().forEach((button) => button.keyboardPressed(key));
+    this.buttons().forEach((button: CalculatorButtonComponent) => button.keyboardPressed(key));
   }
 }

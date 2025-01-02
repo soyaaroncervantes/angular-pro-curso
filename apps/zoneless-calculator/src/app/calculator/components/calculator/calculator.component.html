@@ -24,7 +24,7 @@
       <app-calculator-button
         [isCommand]="last"
         [isDoubleSize]="key === '='"
-        (onClick)="handleClick($event)">
+        (clickOutput)="handleClick($event)">
         {{ key }}
       </app-calculator-button>
     }
