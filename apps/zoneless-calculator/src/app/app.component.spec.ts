@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { expect } from '@playwright/test';
-import { ComponentTestInterface } from '../test/testing.interface';
+import { ComponentTestInterface } from '@test/testing.interface';
 
 interface SetupTest extends ComponentTestInterface<AppComponent> {
   element: HTMLDivElement;
