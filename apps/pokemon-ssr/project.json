@@ -27,7 +27,8 @@
         "ssr": {
           "entry": "apps/pokemon-ssr/src/server.ts"
         },
-        "prerender": true
+        "prerender": true,
+        "outputMode": "server"
       },
       "configurations": {
         "production": {
