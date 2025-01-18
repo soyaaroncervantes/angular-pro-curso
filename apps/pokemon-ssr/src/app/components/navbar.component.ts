@@ -13,13 +13,13 @@ type Route = {
   imports: [RouterLink, NgHeroiconsModule],
   templateUrl: './navbar.component.html',
   host: {
-    class: 'pb-4 pt-3 bg-gray-500 text-white',
+    class: 'pb-4 pt-3 md:pt-4 bg-zinc-800 text-white',
   },
 })
 export class NavbarComponent {
   protected readonly routes: Route[] = [
-    { path: 'about', label: 'about', icon: 'building-storefront' },
-    { path: 'contact', label: 'contact', icon: 'chat-bubble-left-ellipsis' },
-    { path: 'pricing', label: 'pricing', icon: 'currency-dollar' },
+    { path: 'about', label: 'About', icon: 'building-storefront' },
+    { path: 'contact', label: 'Contact', icon: 'chat-bubble-left-ellipsis' },
+    { path: 'pricing', label: 'Pricing', icon: 'currency-dollar' },
   ];
 }
