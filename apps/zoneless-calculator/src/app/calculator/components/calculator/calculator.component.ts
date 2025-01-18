@@ -17,13 +17,13 @@ import { BasicCalculatorBuilder } from '../../builders/basic-calculator.builder'
     imports: [CalculatorButtonComponent, NgTemplateOutlet, NgClass],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        '(document:keyup)': 'handleKeyboardEvent($event.key)',
+      '(document:keyup)': 'handleKeyboardEvent($event.key)',
     }
 })
 export class CalculatorComponent {
-  protected readonly buttons = viewChildren(CalculatorButtonComponent);
   private readonly basicCalculatorBuilder = inject(BasicCalculatorBuilder);
   private readonly calculatorDirector = inject(CalculatorDirector);
+  protected readonly buttons = viewChildren(CalculatorButtonComponent);
   protected readonly resultText = computed(() =>
     this.basicCalculatorBuilder.resultText()
   );
@@ -41,6 +41,6 @@ export class CalculatorComponent {
 
   protected handleKeyboardEvent(key: string) {
     this.handleClick(key);
-    this.buttons().forEach((button: CalculatorButtonComponent) => button.keyboardPressed(key));
+    this.buttons().forEach(button => button.keyboardPressed(key));
   }
 }

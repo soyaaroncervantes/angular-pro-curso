@@ -20,7 +20,7 @@
 
 <ng-template #rowButtonsKey let-keys=keys>
   <div class="flex w-full">
-    @for (key of keys; track $index; let last = $last) {
+    @for (key of keys; track key; let last = $last) {
       <app-calculator-button
         [isCommand]="last"
         [isDoubleSize]="key === '='"
