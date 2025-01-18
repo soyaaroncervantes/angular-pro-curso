@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgHeroiconsModule, T_OUTLINE_ICONS } from '@dimaslz/ng-heroicons';
 
 type Route = {
@@ -10,10 +10,10 @@ type Route = {
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, NgHeroiconsModule],
+  imports: [RouterLink, NgHeroiconsModule, RouterLinkActive],
   templateUrl: './navbar.component.html',
   host: {
-    class: 'pb-4 pt-3 md:pt-4 bg-zinc-800 text-white',
+    class: 'pb-4 pt-3 md:pt-4',
   },
 })
 export class NavbarComponent {
