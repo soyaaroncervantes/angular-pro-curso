@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@apps/*": ["apps/*"],
-      "@calculator/*": ["apps/zoneless-calculator/src/app/*"],
+      "@calculator/*": ["apps/zoneless-calculator/src/app/*"]
     }
   },
   "exclude": [

@@ -1,0 +1,8 @@
+<nav class="flex justify-center gap-2">
+  @for (route of routes; track route.path) {
+    <a class="flex flex-col gap-2 text-center px-2" [routerLink]=[route.path]>
+      <ng-heroicons [icon]="route.icon" class="self-center"></ng-heroicons>
+      <p class="text-xs">{{ route.label }}</p>
+    </a>
+  }
+</nav>
