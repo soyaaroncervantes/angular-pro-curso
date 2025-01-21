@@ -18,6 +18,7 @@ type Route = {
 })
 export class NavbarComponent {
   protected readonly routes: Route[] = [
+    { path: 'pokemons', label: 'Pokemons', icon: 'puzzle-piece' },
     { path: 'about', label: 'About', icon: 'building-storefront' },
     { path: 'contact', label: 'Contact', icon: 'chat-bubble-left-ellipsis' },
     { path: 'pricing', label: 'Pricing', icon: 'currency-dollar' },
