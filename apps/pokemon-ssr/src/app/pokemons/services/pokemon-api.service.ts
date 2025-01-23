@@ -13,15 +13,14 @@ import { NamedAPIResourceDto } from '../dto/utility.dto';
 })
 export class PokemonApiClient extends ApiClientFactory {
   protected override url = 'https://pokeapi.co/api/v2';
-  private pokemonsURL = `${this.url}/pokemon`;
 
-  getPokemons(): Observable<HttpResponse<BaseListDto<NamedAPIResourceDto>>> {
-    return this.get<BaseListDto<NamedAPIResourceDto>>(`${this.pokemonsURL}`);
+  getPokemons$(): Observable<HttpResponse<BaseListDto<NamedAPIResourceDto>>> {
+    return this.get<BaseListDto<NamedAPIResourceDto>>('/pokemon');
   }
 
-  getPokemon(options?: HttpOptions<NamedResourceDto>): Observable<HttpResponse<PokemonDto>> {
+  getPokemon$(options?: HttpOptions<NamedResourceDto>): Observable<HttpResponse<PokemonDto>> {
     return this.get<PokemonDto, NamedFilterDto>(
-      `${this.pokemonsURL}/${options?.data?.id ?? options?.data?.name ?? ''}`,
+      `/pokemon/${options?.data?.id ?? options?.data?.name ?? ''}`,
       options
     );
   }
