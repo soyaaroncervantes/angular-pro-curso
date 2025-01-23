@@ -1,11 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgClass],
   host: {
-    class: 'flex gap-2 border border-teal-300 rounded-xl p-2',
-  }
+    class: 'flex gap-4 border rounded-xl',
+  },
 })
-export class PokemonCardComponent {}
+export class PokemonCardComponent {
+  isLoading = input(true);
+}

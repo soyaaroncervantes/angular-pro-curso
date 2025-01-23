@@ -6,5 +6,8 @@ import { PokemonListComponent } from '@apps/pokemon-ssr/src/app/pokemons/compone
   templateUrl: './pokemons-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PokemonListComponent],
+  host: {
+    class: 'flex flex-col gap-8',
+  },
 })
 export default class PokemonsPageComponent {}

@@ -1,6 +1,23 @@
 <div class="card-header">
-  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon">
+  @if (isLoading()) {
+    <div class="w-24 h-24 aspect-video bg-gray-300 bg-opacity-20 rounded-e-xl animate-pulse"></div>
+  } @else {
+    <img
+      class="w-24 h-24 aspect-video bg-teal-300 bg-opacity-20 rounded-e-xl"
+      width="96px"
+      height="96px"
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+      alt="pokemon">
+  }
 </div>
-<div class="card-content">
-  <h1>pokemon</h1>
+
+<div [ngClass]="{'pt-4 gap-2': isLoading(), 'pt-2': !isLoading() }"
+  class="class-content flex flex-col pe-4">
+  @if (isLoading()) {
+    <div class="h-4 w-24 bg-gray-300 bg-opacity-40 rounded-xl animate-pulse"></div>
+    <div class="h-4 w-36 bg-gray-300 bg-opacity-40 rounded-xl animate-pulse"></div>
+  } @else {
+    <h3 class="text-lg">Pokemon</h3>
+    <p class="text-base">Pokemon description</p>
+  }
 </div>
