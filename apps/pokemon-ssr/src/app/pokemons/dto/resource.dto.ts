@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 
-export class NameResourceDto {
+export class NamedResourceDto {
   @AutoMap(() => String) id!: number;
   @AutoMap(() => String) name!: string;
 }

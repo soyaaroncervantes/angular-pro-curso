@@ -1,4 +1,4 @@
-import { NameResourceDto, UnnamedResourceDto } from './resource.dto';
+import { NamedResourceDto, UnnamedResourceDto } from './resource.dto';
 
-export type NamedFilterDto = NameResourceDto;
+export type NamedFilterDto = NamedResourceDto;
 export type UnnamedFilterDto = UnnamedResourceDto;
