@@ -1,28 +1,8 @@
 import { AutoMap } from '@automapper/classes';
-import { NamedResourceListDto } from './list.dto';
+import { NamedAPIResourceDto, VersionGameIndexDto } from './utility.dto';
 
-// Species type is NamedResourceListDto
 
 export class PokemonDto {
-  // id:                       number;
-  // name:                     string;
-  // base_experience:          number;
-  // height:                   number;
-  // is_default:               boolean;
-  // order:                    number;
-  // weight:                   number;
-  // abilities:                Ability[];
-  // forms:                    Species[];
-  // game_indices:             GameIndex[];
-  // held_items:               HeldItem[];
-  // location_area_encounters: string;
-  // moves:                    Move[];
-  // species:                  Species;
-  // sprites:                  Sprites;
-  // cries:                    Cries;
-  // stats:                    Stat[];
-  // types:                    Type[];
-  // past_types:               PastType[];
   @AutoMap(() => String) id!: number;
   @AutoMap(() => String) name!: string;
   @AutoMap(() => String) base_experience!: number;
@@ -31,49 +11,65 @@ export class PokemonDto {
   @AutoMap(() => String) order!: number;
   @AutoMap(() => String) weight!: number;
   @AutoMap(() => Array) abilities!: PokemonAbilityDto[];
-  @AutoMap(() => Array) forms!: NamedResourceListDto[];
-  @AutoMap(() => Array) game_indices!: PokemonGameIndexDto[];
+  @AutoMap(() => Array) forms!: NamedAPIResourceDto[];
+  @AutoMap(() => Array) game_indices!: VersionGameIndexDto[];
   @AutoMap(() => Array) held_items!: PokemonHeldItemDto[];
   @AutoMap(() => String) location_area_encounters!: string;
   @AutoMap(() => Array) moves!: PokemonMoveDto[];
-  @AutoMap(() => NamedResourceListDto) species!: NamedResourceListDto;
-  @AutoMap(() => Array) sprites!: PokemonSpriteDto[];
-
+  @AutoMap(() => Array) past_types!: PokemonTypePastDto[];
+  @AutoMap(() => Array) sprites!: PokemonSpritesDto[];
+  @AutoMap(() => PokemonCriesDto) cries!: PokemonCriesDto;
+  @AutoMap(() => NamedAPIResourceDto) species!: NamedAPIResourceDto;
+  @AutoMap(() => PokemonStatDto) stats!: PokemonStatDto[];
+  @AutoMap(() => PokemonTypeDto) types!: PokemonTypeDto[];
 }
 
 export class PokemonAbilityDto {
-  @AutoMap(() => Number) is_hidden!: boolean;
+  @AutoMap(() => Boolean) is_hidden!: boolean;
   @AutoMap(() => Number) slot!: number;
-  @AutoMap(() => Number) ability!: NamedResourceListDto;
+  @AutoMap(() => NamedAPIResourceDto) ability!: NamedAPIResourceDto;
 }
 
-export class PokemonGameIndexDto {
-  @AutoMap(() => String) game_index!: number;
-  @AutoMap(() => NamedResourceListDto) version!: NamedResourceListDto;
+export class PokemonTypeDto {
+  @AutoMap(() => Number) slot!: number;
+  @AutoMap(() => NamedAPIResourceDto) type!: NamedAPIResourceDto;
+}
+
+export type PokemonFormTypeDto = PokemonTypeDto;
+
+export class PokemonTypePastDto {
+  @AutoMap(() => PokemonTypeDto) type!: PokemonTypeDto;
+  @AutoMap(() => NamedAPIResourceDto) generation!: NamedAPIResourceDto;
 }
 
 export class PokemonHeldItemDto {
-  @AutoMap(() => String) item!: NamedResourceListDto;
-  @AutoMap(() => Array) version_details!: VersionDetailsDto[];
+  @AutoMap(() => String) item!: NamedAPIResourceDto;
+  @AutoMap(() => Array) version_details!: PokemonHeldItemVersionDto[];
 }
 
-export class VersionDetailsDto {
+export class PokemonHeldItemVersionDto {
   @AutoMap(() => String) rarity!: number;
-  @AutoMap(() => NamedResourceListDto) version!: NamedResourceListDto;
+  @AutoMap(() => NamedAPIResourceDto) version!: NamedAPIResourceDto;
 }
 
 export class PokemonMoveDto {
-  @AutoMap(() => NamedResourceListDto) move!: NamedResourceListDto;
-  @AutoMap(() => Array) version_group_details!: VersionGroupDetail[];
+  @AutoMap(() => NamedAPIResourceDto) move!: NamedAPIResourceDto;
+  @AutoMap(() => Array) version_group_details!: PokemonMoveVersionDto[];
 }
 
-export class VersionGroupDetail {
+export class PokemonMoveVersionDto {
   @AutoMap(() => Number) level_learned_at!: number;
-  @AutoMap(() => NamedResourceListDto) version_group!: NamedResourceListDto;
-  @AutoMap(() => NamedResourceListDto) move_learn_method!: NamedResourceListDto;
+  @AutoMap(() => NamedAPIResourceDto) version_group!: NamedAPIResourceDto;
+  @AutoMap(() => NamedAPIResourceDto) move_learn_method!: NamedAPIResourceDto;
 }
 
-export class SpriteDto {
+export class PokemonStatDto {
+  @AutoMap(() => Number) base_stat!: number;
+  @AutoMap(() => Number) effort!: number;
+  @AutoMap(() => NamedAPIResourceDto) stat!: NamedAPIResourceDto;
+}
+
+export class PokemonSpritesDto {
   @AutoMap(() => String) back_default!: string;
   @AutoMap(() => String) back_female!: string;
   @AutoMap(() => String) back_shiny!: string;
@@ -84,33 +80,7 @@ export class SpriteDto {
   @AutoMap(() => String) front_shiny_female!: string;
 }
 
-export class PokemonSpriteDto extends SpriteDto {
-  @AutoMap(() => OtherSpriteDto) other!: OtherSpriteDto;
-  @AutoMap(() => SpriteDto) animated!: SpriteDto;
-  @AutoMap(() => VersionsDto) versions!: VersionsDto;
+export class PokemonCriesDto {
+  @AutoMap(() => String) latest!: string;
+  @AutoMap(() => String) legacy!: string;
 }
-
-export class OtherSpriteDto {
-  @AutoMap(() => DreamWorldSpriteDto) dream_world!: DreamWorldSpriteDto;
-  @AutoMap(() => HomeSpriteDto) home!: HomeSpriteDto;
-  @AutoMap(() => OfficialArtworkSpriteDto) "official-artwork"!: OfficialArtworkSpriteDto;
-  @AutoMap(() => SpriteDto) showdown!: SpriteDto;
-}
-
-export class DreamWorldSpriteDto {
-  @AutoMap(() => String) front_default!: string;
-  @AutoMap(() => String) front_female!: string;
-}
-
-export class HomeSpriteDto {
-  @AutoMap(() => String) front_default!: string;
-  @AutoMap(() => String) front_female!: string;
-  @AutoMap(() => String) front_shiny!: string;
-  @AutoMap(() => String) front_shiny_female!: string;
-}
-
-export class OfficialArtworkSpriteDto {
-  @AutoMap(() => String) front_default!: string;
-  @AutoMap(() => String) front_shiny!: string;
-}
-
