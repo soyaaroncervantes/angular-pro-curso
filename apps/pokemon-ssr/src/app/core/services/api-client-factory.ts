@@ -9,13 +9,13 @@ import {
 import { Nullable } from '../utils/types.utils';
 import { Observable } from 'rxjs';
 
-export type HttpOptions<T = undefined> = {
+export type HttpOptions<K> = {
   observe: 'response';
   headers?: HttpHeaders;
   params?: HttpParams;
   context?: HttpContext;
   responseType?: 'json';
-  data?: T;
+  data?: K;
 };
 
 export class ApiClientFactory {
@@ -26,8 +26,11 @@ export class ApiClientFactory {
   protected get = <T, K = undefined>(
     url: string,
     options?: HttpOptions<K>
-  ): Observable<HttpResponse<T>> => this.http.get<T>(this.createURL(url), {
-    ...options,
-    observe: 'response' as const
-  })
+  ): Observable<HttpResponse<T>> => {
+    delete options?.data;
+    return this.http.get<T>(this.createURL(url), {
+      ...options,
+      observe: 'response' as const
+    });
+  }
 }

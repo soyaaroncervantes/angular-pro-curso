@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { ApiClientFactory, HttpOptions } from '../../core/services/api-client-factory';
 import { BaseListDto } from '../dto/list.dto';
 import { NamedResourceDto } from '../dto/resource.dto';
 import { NamedFilterDto } from '../dto/filters.dto';
 import { PokemonDto } from '../dto/pokemon.dto';
-import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
-import { NamedAPIResourceDto } from '@apps/pokemon-ssr/src/app/pokemons/dto/utility.dto';
+import { NamedAPIResourceDto } from '../dto/utility.dto';
 
 @Injectable({
   providedIn: 'root'
