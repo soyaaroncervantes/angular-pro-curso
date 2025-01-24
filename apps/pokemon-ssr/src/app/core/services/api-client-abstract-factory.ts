@@ -1,13 +1,12 @@
 import { inject } from '@angular/core';
 import {
   HttpClient,
-  HttpContext,
-  HttpHeaders,
-  HttpParams,
-  HttpResponse,
+  type HttpContext,
+  type HttpHeaders,
+  type HttpParams,
+  type HttpResponse,
 } from '@angular/common/http';
-import { Nullable } from '../utils/types.utils';
-import { Observable } from 'rxjs';
+import type { Observable } from 'rxjs';
 
 export interface HttpOptions {
   headers?: HttpHeaders;
@@ -16,10 +15,13 @@ export interface HttpOptions {
   responseType?: 'json';
 }
 
+export type APIResponseDto<T> = Observable<HttpResponse<T>>;
+
 export abstract class ApiClientAbstractFactory {
   protected readonly http = inject(HttpClient);
-  protected readonly createURL = (path: string) => `${this.url}${path}`;
-  protected url: Nullable<string> = null;
+  protected abstract url: string;
 
-  protected abstract get<T>(url: string, options?: HttpOptions): Observable<HttpResponse<T>>;
+  protected readonly createURL = (path: string) => `${this.url}${path}`;
+
+  protected abstract get<T>(url: string, options?: HttpOptions): APIResponseDto<T>;
 }
