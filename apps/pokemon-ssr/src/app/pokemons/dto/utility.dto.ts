@@ -5,7 +5,7 @@ export class NamedAPIResourceDto {
   @AutoMap(() => String) url!: string;
 }
 
-export class APIResponseDto {
+export class APIResourceDto {
   @AutoMap(() => String) url!: string;
 }
 
@@ -39,7 +39,7 @@ export class GenerationGameIndexDto {
 }
 
 export class MachineVersionDetailDto {
-  @AutoMap(() => APIResponseDto) machine!: APIResponseDto;
+  @AutoMap(() => APIResourceDto) machine!: APIResourceDto;
   @AutoMap(() => NamedAPIResourceDto) language!: NamedAPIResourceDto;
 }
 
