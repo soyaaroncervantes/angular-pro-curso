@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { PokemonApiFactory, PokemonResourceList } from '../pokemon-api.factory';
+import { PokemonApiFactory, PokemonResourceList } from '../factories/pokemon-api.factory';
 import type { FilterListDto } from '../../dto/filters.dto';
 import type { APIResponseDto } from '../../../core/services/api-client-abstract-factory';
 import {

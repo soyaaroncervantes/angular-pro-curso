@@ -3,8 +3,8 @@ import {
   ApiClientAbstractFactory,
   type APIResponseDto,
   type HttpOptions
-} from '../../core/services/api-client-abstract-factory';
-import type { FilterListDto } from '../dto/filters.dto';
+} from '../../../core/services/api-client-abstract-factory';
+import type { FilterListDto } from '../../dto/filters.dto';
 
 export interface PokemonResourceList {
   getList$<T>(
