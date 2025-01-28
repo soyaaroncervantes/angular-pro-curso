@@ -22,7 +22,7 @@ export class EffectDto {
 export class EncounterDto {
   @AutoMap(() => Number) min_level!: number;
   @AutoMap(() => Number) max_level!: number;
-  @AutoMap(() => Array) condition_values!: NamedAPIResourceDto[];
+  @AutoMap(() => [NamedAPIResourceDto]) condition_values!: NamedAPIResourceDto[];
   @AutoMap(() => Number) chance!: number;
   @AutoMap(() => NamedAPIResourceDto) method!: NamedAPIResourceDto;
 }
@@ -57,7 +57,7 @@ export class VerboseEffectDto {
 export class VersionEncounterDetailDto {
   @AutoMap(() => NamedAPIResourceDto) version!: NamedAPIResourceDto;
   @AutoMap(() => Number) max_encounter!: number;
-  @AutoMap(() => Array) encounter_details!: EncounterDto[];
+  @AutoMap(() => [EncounterDto]) encounter_details!: EncounterDto[];
 }
 
 export class VersionGameIndexDto {

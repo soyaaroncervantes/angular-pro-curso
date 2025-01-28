@@ -3,25 +3,25 @@ import { NamedAPIResourceDto, VersionGameIndexDto } from './utility.dto';
 
 
 export class PokemonDto {
-  @AutoMap(() => String) id!: number;
+  @AutoMap(() => Number) id!: number;
   @AutoMap(() => String) name!: string;
-  @AutoMap(() => String) base_experience!: number;
-  @AutoMap(() => String) height!: number;
-  @AutoMap(() => String) is_default!: boolean;
-  @AutoMap(() => String) order!: number;
-  @AutoMap(() => String) weight!: number;
-  @AutoMap(() => Array) abilities!: PokemonAbilityDto[];
-  @AutoMap(() => Array) forms!: NamedAPIResourceDto[];
-  @AutoMap(() => Array) game_indices!: VersionGameIndexDto[];
-  @AutoMap(() => Array) held_items!: PokemonHeldItemDto[];
+  @AutoMap(() => Number) base_experience!: number;
+  @AutoMap(() => Number) height!: number;
+  @AutoMap(() => Boolean) is_default!: boolean;
+  @AutoMap(() => Number) order!: number;
+  @AutoMap(() => Number) weight!: number;
   @AutoMap(() => String) location_area_encounters!: string;
-  @AutoMap(() => Array) moves!: PokemonMoveDto[];
-  @AutoMap(() => Array) past_types!: PokemonTypePastDto[];
-  @AutoMap(() => Array) sprites!: PokemonSpritesDto[];
   @AutoMap(() => PokemonCriesDto) cries!: PokemonCriesDto;
   @AutoMap(() => NamedAPIResourceDto) species!: NamedAPIResourceDto;
-  @AutoMap(() => PokemonStatDto) stats!: PokemonStatDto[];
-  @AutoMap(() => PokemonTypeDto) types!: PokemonTypeDto[];
+  @AutoMap(() => [PokemonAbilityDto]) abilities!: PokemonAbilityDto[];
+  @AutoMap(() => [NamedAPIResourceDto]) forms!: NamedAPIResourceDto[];
+  @AutoMap(() => [VersionGameIndexDto]) game_indices!: VersionGameIndexDto[];
+  @AutoMap(() => [PokemonHeldItemDto]) held_items!: PokemonHeldItemDto[];
+  @AutoMap(() => [PokemonMoveDto]) moves!: PokemonMoveDto[];
+  @AutoMap(() => [PokemonTypePastDto]) past_types!: PokemonTypePastDto[];
+  @AutoMap(() => [PokemonSpritesDto]) sprites!: PokemonSpritesDto[];
+  @AutoMap(() => [PokemonStatDto]) stats!: PokemonStatDto[];
+  @AutoMap(() => [PokemonTypeDto]) types!: PokemonTypeDto[];
 }
 
 export class PokemonAbilityDto {
@@ -43,18 +43,18 @@ export class PokemonTypePastDto {
 }
 
 export class PokemonHeldItemDto {
-  @AutoMap(() => String) item!: NamedAPIResourceDto;
-  @AutoMap(() => Array) version_details!: PokemonHeldItemVersionDto[];
+  @AutoMap(() => NamedAPIResourceDto) item!: NamedAPIResourceDto;
+  @AutoMap(() => [PokemonHeldItemVersionDto]) version_details!: PokemonHeldItemVersionDto[];
 }
 
 export class PokemonHeldItemVersionDto {
-  @AutoMap(() => String) rarity!: number;
+  @AutoMap(() => Number) rarity!: number;
   @AutoMap(() => NamedAPIResourceDto) version!: NamedAPIResourceDto;
 }
 
 export class PokemonMoveDto {
   @AutoMap(() => NamedAPIResourceDto) move!: NamedAPIResourceDto;
-  @AutoMap(() => Array) version_group_details!: PokemonMoveVersionDto[];
+  @AutoMap(() => [PokemonMoveVersionDto]) version_group_details!: PokemonMoveVersionDto[];
 }
 
 export class PokemonMoveVersionDto {
