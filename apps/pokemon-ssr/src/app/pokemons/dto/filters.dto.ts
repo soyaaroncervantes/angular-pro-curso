@@ -1,10 +1,9 @@
-import { NamedResourceDto, UnnamedResourceDto } from './resource.dto';
 import { AutoMap } from '@automapper/classes';
+import { Params } from '@angular/router';
 
-export type NamedFilterDto = NamedResourceDto;
-export type UnnamedFilterDto = UnnamedResourceDto;
+export class FilterDto implements Params {}
 
-export class FilterListDto {
+export class FilterListDto extends FilterDto {
   @AutoMap(() => Number) limit!: number;
   @AutoMap(() => Number) offset!: number;
 }
