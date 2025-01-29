@@ -5,7 +5,7 @@ import { mapper } from '../../core/mappings/mapper';
 import { FilterListModel } from '../models/filter.model';
 import { PokemonNamedAPIResourceListModel } from '../models/list.model';
 import { PokemonNamedAPIResourceListDto } from '../dto/list.dto';
-import { FilterListDto } from '../dto/filters.dto';
+import { PokemonPaginationFilterDto } from '../dto/filters.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,9 @@ export class PokemonListService {
     path: string,
     filter?: FilterListModel
   ): Observable<PokemonNamedAPIResourceListModel> {
-    const dto = mapper.map(filter, FilterListModel, FilterListDto);
+    const dto = mapper.map(filter, FilterListModel, PokemonPaginationFilterDto);
     return this.pokemonListApi
-      .getList$<PokemonNamedAPIResourceListDto>(path, dto)
+      .getList$<PokemonNamedAPIResourceListDto, PokemonPaginationFilterDto>(path, dto)
       .pipe(
         map((x) =>
           mapper.map(

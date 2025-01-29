@@ -1,12 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { PokemonApiFactory, PokemonResourceList } from '../factories/pokemon-api.factory';
-import type { FilterListDto } from '../../dto/filters.dto';
-import type { APIResponseDto } from '../../../core/services/api-client-abstract-factory';
 import {
-  PokemonAPIResourceListDto,
-  PokemonNamedAPIResourceListDto,
-} from '../../dto/list.dto';
+  PokemonApiFactory,
+  PokemonResourceList,
+} from '../factories/pokemon-api.factory';
+import type { APIResponseDto } from '../../../core/services/api-client-abstract-factory';
+import type {
+  FilterDto,
+  PaginationFilterDto
+} from '../../dto/filters.dto';
+import type { PaginationByOffsetDto } from '../../dto/pagination.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +17,15 @@ import {
 export class PokemonListApiService implements PokemonResourceList {
   private readonly api = inject(PokemonApiFactory);
 
-  getList$<T = PokemonNamedAPIResourceListDto | PokemonAPIResourceListDto>(
-    path: string,
-    params?: FilterListDto
-  ): APIResponseDto<T> {
-    return this.api.get<T>(path, {
+  getList$<
+    A,
+    B extends PaginationByOffsetDto<C>,
+    C extends FilterDto = PaginationFilterDto,
+  >(path: string, filters?: B): APIResponseDto<A> {
+    return this.api.get<A>(path, {
       params: new HttpParams()
-        .set('limit', params?.limit.toString() ?? 90)
-        .set('offset', params?.offset.toString() ?? 0),
+        .set('limit', filters?.limit.toString() ?? 90)
+        .set('offset', filters?.offset.toString() ?? 0),
     });
   }
 }

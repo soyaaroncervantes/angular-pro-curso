@@ -4,13 +4,14 @@ import {
   type APIResponseDto,
   type HttpOptions
 } from '../../../core/services/api-client-abstract-factory';
-import type { FilterListDto } from '../../dto/filters.dto';
+import { FilterDto } from '../../dto/filters.dto';
+import { PaginationByOffsetDto } from '../../dto/pagination.dto';
 
 export interface PokemonResourceList {
-  getList$<T>(
+  getList$<A, B extends PaginationByOffsetDto<C>, C extends FilterDto> (
     path: string,
-    params?: FilterListDto
-  ): APIResponseDto<T>
+    filters?: B,
+  ): APIResponseDto<A>
 }
 
 @Injectable({
