@@ -1,9 +1,7 @@
-import { AutoMap } from '@automapper/classes';
 import { Params } from '@angular/router';
+import { PaginationByOffsetDto } from './pagination.dto';
 
 export class FilterDto implements Params {}
+export class PaginationFilterDto extends FilterDto {}
 
-export class FilterListDto extends FilterDto {
-  @AutoMap(() => Number) limit!: number;
-  @AutoMap(() => Number) offset!: number;
-}
+export class PokemonPaginationFilterDto extends PaginationByOffsetDto<PaginationFilterDto> {}
