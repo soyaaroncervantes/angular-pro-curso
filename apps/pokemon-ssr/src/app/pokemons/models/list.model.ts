@@ -7,6 +7,10 @@ class BaseListModel<T> {
   @AutoMap(() => String) next: Nullable<string> = null;
   @AutoMap(() => String) previous: Nullable<string> = null;
   @AutoMap(() => Array) results: T[] = [];
+
+  constructor(list: T[] = []) {
+    this.results = list;
+  }
 }
 
 export class PokemonNamedAPIResourceListModel extends BaseListModel<NamedAPIResourceModel>{}
