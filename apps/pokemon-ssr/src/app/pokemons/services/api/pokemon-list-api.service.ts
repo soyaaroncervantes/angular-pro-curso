@@ -4,7 +4,7 @@ import {
   PokemonApiFactory,
   PokemonResourceList,
 } from '../factories/pokemon-api.factory';
-import type { APIResponseDto } from '../../../core/services/api-client-abstract-factory';
+import type { APIResponseDto } from '../../../core/api/api-abstract-factory';
 import type {
   FilterDto,
   PaginationFilterDto

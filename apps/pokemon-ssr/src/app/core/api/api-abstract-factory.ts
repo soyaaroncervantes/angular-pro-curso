@@ -17,7 +17,7 @@ export interface HttpOptions {
 
 export type APIResponseDto<T> = Observable<HttpResponse<T>>;
 
-export abstract class ApiClientAbstractFactory {
+export abstract class ApiAbstractFactory {
   protected readonly http = inject(HttpClient);
   protected abstract url: string;
 

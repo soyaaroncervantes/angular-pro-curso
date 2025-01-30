@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PokemonListApiService } from './api/pokemon-list-api.service';
 import { mapper } from '../../core/mappings/mapper';
-import { FilterListModel } from '../models/filter.model';
+import { PokemonListApiService } from './api/pokemon-list-api.service';
+import { PokemonPaginationFilterModel } from '../models/filter.model';
 import { PokemonNamedAPIResourceListModel } from '../models/list.model';
 import { PokemonNamedAPIResourceListDto } from '../dto/list.dto';
 import { PokemonPaginationFilterDto } from '../dto/filters.dto';
@@ -15,9 +15,9 @@ export class PokemonListService {
 
   getNamedList$(
     path: string,
-    filter?: FilterListModel
+    filter?: PokemonPaginationFilterModel
   ): Observable<PokemonNamedAPIResourceListModel> {
-    const dto = mapper.map(filter, FilterListModel, PokemonPaginationFilterDto);
+    const dto = mapper.map(filter, PokemonPaginationFilterModel, PokemonPaginationFilterDto);
     return this.pokemonListApi
       .getList$<PokemonNamedAPIResourceListDto, PokemonPaginationFilterDto>(path, dto)
       .pipe(
