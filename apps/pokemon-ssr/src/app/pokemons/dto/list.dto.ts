@@ -2,7 +2,7 @@ import { Nullable } from '../../core/utils/types.utils';
 import { AutoMap } from '@automapper/classes';
 import type { APIResourceDto, NamedAPIResourceDto } from './utility.dto';
 
-class ListDto<T> {
+export class ListDto<T> {
   @AutoMap(() => Number) count!: number;
   @AutoMap(() => String) next!: string;
   @AutoMap(() => String) previous!: Nullable<string>;

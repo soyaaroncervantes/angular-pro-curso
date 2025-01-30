@@ -1,16 +1,7 @@
-import { AutoMap } from '@automapper/classes';
-import { ParamMap, Params } from '@angular/router';
+import { Params } from '@angular/router';
+import { PaginationByOffsetModel } from './pagination.model';
 
 export class FilterModel implements Params {}
+export class PaginationFilterModel extends FilterModel {}
 
-export class FilterListModel extends FilterModel {
-  @AutoMap(() => Number) limit = 90;
-  @AutoMap(() => Number) offset = 0;
-
-  constructor(params?: ParamMap) {
-    super();
-    this.limit = parseInt(params?.get('limit')?.toString() ?? this.limit.toString())
-    this.offset = parseInt(params?.get('offset')?.toString() ?? this.offset.toString())
-  }
-}
-
+export class PokemonPaginationFilterModel extends PaginationByOffsetModel<PaginationFilterModel> {}
