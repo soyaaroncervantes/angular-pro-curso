@@ -7,7 +7,7 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
   host: {
-    class: 'flex gap-4 border rounded-xl',
+    class: 'flex gap-4 border rounded-xl overflow-auto',
   },
 })
 export class PokemonCardComponent {
