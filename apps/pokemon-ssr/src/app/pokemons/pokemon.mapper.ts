@@ -1,5 +1,9 @@
-import { createMap, forMember, mapFrom, MappingProfile } from '@automapper/core';
-import { mapper } from '../core/mappings/mapper';
+import {
+  createMap,
+  forMember,
+  mapFrom,
+  MappingProfile,
+} from '@automapper/core';
 import {
   FilterModel,
   PaginationFilterModel,
@@ -24,7 +28,7 @@ import {
   NamedAPIResourceModel,
 } from './models/utility.model';
 
-export const pokemonProfile: MappingProfile = mapper => {
+export const pokemonProfile: MappingProfile = (mapper) => {
   createMap(mapper, FilterModel, FilterDto);
   createMap(mapper, PaginationFilterModel, PaginationFilterDto);
 
@@ -60,8 +64,9 @@ export const pokemonProfile: MappingProfile = mapper => {
     PokemonAPIResourceListModel,
     forMember(
       (x) => x.results,
-      mapFrom((x) => mapper.mapArray(x.results, APIResourceDto, APIResourceModel))
+      mapFrom((x) =>
+        mapper.mapArray(x.results, APIResourceDto, APIResourceModel)
+      )
     )
   );
-
-}
+};
