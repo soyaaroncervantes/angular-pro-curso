@@ -19,7 +19,7 @@ export type APIResponseDto<T> = Observable<HttpResponse<T>>;
 
 export abstract class ApiAbstractFactory {
   protected readonly http = inject(HttpClient);
-  protected abstract url: string;
+  protected readonly abstract url: string;
 
   protected readonly createURL = (path: string) => `${this.url}${path}`;
 
