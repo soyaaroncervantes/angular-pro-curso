@@ -11,6 +11,10 @@ export class BaseListModel<T> {
   constructor(list: T[] = []) {
     this.results = list;
   }
+
+  addElements(currentElements: T[]): void {
+    this.results = [...currentElements,...this.results];
+  }
 }
 
 export class PokemonNamedAPIResourceListModel extends BaseListModel<NamedAPIResourceModel>{}
