@@ -15,12 +15,14 @@ import type { PaginationByOffset } from '../../core/pagination/pagination-abstra
 import type { NamedAPIResourceModel } from '../models/utility.model';
 import type { PokemonNamedAPIResourceListModel } from '../models/list.model';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { SvgUiComponent } from '@apps/pokemon-ssr/src/app/core/components/svg-ui/svg-ui.component';
 
 @Component({
   selector: 'app-pokemons-page',
   templateUrl: './pokemons-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [PokemonListComponent],
+  imports: [PokemonListComponent, AsyncPipe, SvgUiComponent],
   host: {
     class: 'flex flex-col gap-8',
   },
@@ -40,8 +42,8 @@ export default class PokemonsPageComponent
   private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.activatedRoute.queryParamMap
-      .subscribe((x) => this.request$.next(new PaginationFilterModel(x))
+    this.activatedRoute.queryParamMap.subscribe((x) =>
+      this.request$.next(new PaginationFilterModel(x))
     );
 
     this.paginator = new PaginationByOffsetFactory(this.destroyRef, this, (p) =>

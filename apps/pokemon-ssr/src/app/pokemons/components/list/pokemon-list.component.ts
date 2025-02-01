@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { PokemonCardComponent } from '../card/pokemon-card.component';
+import type { NamedAPIResourceModel } from '../../models/utility.model';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,4 +11,7 @@ import { PokemonCardComponent } from '../card/pokemon-card.component';
     class: 'flex flex-col gap-8',
   },
 })
-export class PokemonListComponent {}
+export class PokemonListComponent {
+  list = input.required<NamedAPIResourceModel[]>();
+  isLoading = input(true);
+}

@@ -1,1 +1,3 @@
-<app-pokemon-card></app-pokemon-card>
+@for(item of list(); track item.name) {
+  <app-pokemon-card [isLoading]="isLoading()"></app-pokemon-card>
+}

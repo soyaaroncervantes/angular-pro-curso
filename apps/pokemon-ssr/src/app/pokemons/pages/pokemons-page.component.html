@@ -1,11 +1,20 @@
+@let list = list$ | async;
+@let loading = paginator?.loading$ | async;
+
 <div class="flex flex-col gap-2">
   <h1 class="text-5xl font-extralight">Pokemon page</h1>
   <p class="text-xl">We will show all pokemons here</p>
 </div>
 
 <div class="flex gap-8">
-  <app-pokemon-list />
-  <div>
-    Not preview
-  </div>
+  @if (list) {
+    @let isEmpty = !(list.results.length > 0);
+    @if (loading) { <div class="loading-dots"></div> }
+    @if (isEmpty) {
+      <app-svg-ui name="trainer"></app-svg-ui>
+    }
+    @else {
+      <app-pokemon-list [list]="list.results" [isLoading]="loading!"></app-pokemon-list>
+    }
+  }
 </div>
