@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { NamedAPIResourceModel } from '../../models/utility.model';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -11,5 +12,6 @@ import { NgClass } from '@angular/common';
   },
 })
 export class PokemonCardComponent {
-  isLoading = input(true);
+  isLoading = input.required();
+  item = input.required<NamedAPIResourceModel>();
 }
