@@ -32,8 +32,26 @@ export const pokemonProfile: MappingProfile = (mapper) => {
   createMap(mapper, FilterModel, FilterDto);
   createMap(mapper, PaginationFilterModel, PaginationFilterDto);
 
-  createMap(mapper, NamedAPIResourceDto, NamedAPIResourceModel);
+  createMap(
+    mapper,
+    NamedAPIResourceDto,
+    NamedAPIResourceModel,
+    forMember(
+      x => x.url,
+      mapFrom(x => new URL(x.url))
+    ),
+  );
   createMap(mapper, APIResourceDto, APIResourceModel);
+
+  createMap(
+    mapper,
+    APIResourceDto,
+    APIResourceModel,
+    forMember(
+      x => x.url,
+      mapFrom(x => new URL(x.url))
+    ),
+  );
 
   createMap(
     mapper,
