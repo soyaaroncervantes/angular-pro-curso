@@ -1,0 +1,11 @@
+svg {
+  width: 1em;
+  height: 1em;
+  min-width: 1em;
+  color: inherit;
+  border-radius: inherit;
+
+  use {
+    color: inherit;
+  }
+}
