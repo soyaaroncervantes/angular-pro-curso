@@ -16,7 +16,7 @@ import type { NamedAPIResourceModel } from '../models/utility.model';
 import type { PokemonNamedAPIResourceListModel } from '../models/list.model';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
-import { SvgUiComponent } from '@apps/pokemon-ssr/src/app/core/components/svg-ui/svg-ui.component';
+import { SvgUiComponent } from '../../core/components/svg-ui/svg-ui.component';
 
 @Component({
   selector: 'app-pokemons-page',
