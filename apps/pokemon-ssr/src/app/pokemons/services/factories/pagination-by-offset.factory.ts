@@ -7,7 +7,7 @@ import {
   PaginationByOffsetModel,
   PaginationModel,
 } from '../../models/pagination.model';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { BaseListModel } from '../../models/list.model';
 import { DestroyRef } from '@angular/core';
 
@@ -50,14 +50,24 @@ export class PaginationByOffsetFactory<
       offset: this.offset,
     });
 
-    this.fetchingState$ = this.fetchFn(pagination).subscribe((list) => {
-      const currentElements = reset
-        ? []
-        : ((this.paginationInstance.list$?.value ?? []) as BaseListModel<A>[]);
-      console.log({ currentElements });
-      this.offset += this.itemsPerPage;
-      this.loading$.next(false);
-    });
+    this.fetchingState$ = this.fetchFn(pagination)
+      .pipe(
+        map(list => {
+          const currentElements = reset ? [] : (this.paginationInstance.list$?.value?.results ?? []);
+          list.addElements(currentElements);
+          return list;
+        })
+      )
+      .subscribe({
+        next: x => {
+          this.hasNextPage = x.next !== null;
+          this.paginationInstance.list$.next(x);
+        },
+        complete: () => {
+          this.offset += this.itemsPerPage;
+          this.loading$.next(false);
+        }
+      });
   }
 
   private createPagination<A>({
