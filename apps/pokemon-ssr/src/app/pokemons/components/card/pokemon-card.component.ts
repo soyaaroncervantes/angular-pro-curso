@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NamedAPIResourceModel } from '../../models/utility.model';
 
 @Component({
@@ -12,5 +12,7 @@ import { NamedAPIResourceModel } from '../../models/utility.model';
 })
 export class PokemonCardComponent {
   isLoading = input.required();
-  item = input.required<NamedAPIResourceModel>();
+  pokemon = input.required<NamedAPIResourceModel>();
+
+  readonly pokemonImageUrl = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemon().id}.png`);
 }
