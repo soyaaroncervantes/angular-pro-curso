@@ -4,10 +4,12 @@ import { Nullable } from '../../core/utils/types.utils';
 export class NamedAPIResourceModel {
   @AutoMap(() => String) name: Nullable<string> = null;
   @AutoMap(() => URL) url: Nullable<URL> = null;
+  @AutoMap(() => Number) id: Nullable<number> = null;
 }
 
 export class APIResourceModel {
   @AutoMap(() => URL) url: Nullable<URL> = null;
+  @AutoMap(() => Number) id: Nullable<number> = null;
 }
 
 export class DescriptionModel {
