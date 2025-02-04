@@ -26,7 +26,9 @@ export class PaginationByOffsetFactory<
   constructor(
     protected override readonly destroyRef: DestroyRef,
     protected override paginationInstance: PaginationByOffset<A, B>,
-    protected override fetchFn: (pagination: PaginationByOffsetModel<B>) => Observable<BaseListModel<A>>,
+    protected override fetchFn: (
+      pagination: PaginationByOffsetModel<B>
+    ) => Observable<BaseListModel<A>>,
     protected override itemsPerPage = 90
   ) {
     super(destroyRef, paginationInstance, fetchFn, itemsPerPage);
@@ -52,21 +54,23 @@ export class PaginationByOffsetFactory<
 
     this.fetchingState$ = this.fetchFn(pagination)
       .pipe(
-        map(list => {
-          const currentElements = reset ? [] : (this.paginationInstance.list$?.value?.results ?? []);
+        map((list) => {
+          const currentElements = reset
+            ? []
+            : this.paginationInstance.list$?.value?.results ?? [];
           list.addElements(currentElements);
           return list;
         })
       )
       .subscribe({
-        next: x => {
+        next: (x) => {
           this.hasNextPage = x.next !== null;
           this.paginationInstance.list$.next(x);
         },
         complete: () => {
           this.offset += this.itemsPerPage;
           this.loading$.next(false);
-        }
+        },
       });
   }
 
