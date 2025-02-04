@@ -40,6 +40,12 @@ export const pokemonProfile: MappingProfile = (mapper) => {
       x => x.url,
       mapFrom(x => new URL(x.url))
     ),
+    forMember(
+      x => x.id,
+      mapFrom(x => x.url.split('/').at(-2) !== undefined ?
+        Number(x.url.split('/').at(-2)) :
+        null)
+    ),
   );
   createMap(mapper, APIResourceDto, APIResourceModel);
 
@@ -50,6 +56,12 @@ export const pokemonProfile: MappingProfile = (mapper) => {
     forMember(
       x => x.url,
       mapFrom(x => new URL(x.url))
+    ),
+    forMember(
+      x => x.id,
+      mapFrom(x => x.url.split('/').at(-2) !== undefined ?
+        Number(x.url.split('/').at(-2)) :
+        null)
     ),
   );
 
