@@ -13,7 +13,7 @@ type Route = {
   imports: [RouterLink, NgHeroiconsModule, RouterLinkActive],
   templateUrl: './navbar.component.html',
   host: {
-    class: 'pb-4 pt-3 md:pt-4',
+    class: 'pb-4 pt-3 md:pt-0 sticky bottom-0 md:top-0',
   },
 })
 export class NavbarComponent {
