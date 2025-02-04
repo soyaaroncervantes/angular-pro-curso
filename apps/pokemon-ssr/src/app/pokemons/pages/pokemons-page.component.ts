@@ -5,18 +5,18 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { BehaviorSubject, delay } from 'rxjs';
 import { PaginationByOffsetFactory } from '../services/factories/pagination-by-offset.factory';
 import { PokemonListService } from '../services/pokemon-list.service';
 import { PokemonListComponent } from '../components/list/pokemon-list.component';
 import { PaginationFilterModel } from '../models/filter.model';
+import { SvgUiComponent } from '../../core/components/svg-ui/svg-ui.component';
 import type { Nullable } from '../../core/utils/types.utils';
 import type { PaginationByOffset } from '../../core/pagination/pagination-abstract-factory';
 import type { NamedAPIResourceModel } from '../models/utility.model';
 import type { PokemonNamedAPIResourceListModel } from '../models/list.model';
-import { ActivatedRoute } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
-import { SvgUiComponent } from '../../core/components/svg-ui/svg-ui.component';
 
 @Component({
   selector: 'app-pokemons-page',
@@ -32,7 +32,7 @@ export default class PokemonsPageComponent
     OnInit,
     PaginationByOffset<NamedAPIResourceModel, PaginationFilterModel>
 {
-  list$ = new BehaviorSubject<Nullable<PokemonNamedAPIResourceListModel>>(null);
+  list$ = new BehaviorSubject<Nullable<PokemonNamedAPIResourceListModel>>(null)
   request$ = new BehaviorSubject<Nullable<PaginationFilterModel>>(null);
   protected paginator: Nullable<
     PaginationByOffsetFactory<NamedAPIResourceModel, PaginationFilterModel>
