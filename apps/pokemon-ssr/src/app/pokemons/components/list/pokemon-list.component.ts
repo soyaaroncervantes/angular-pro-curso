@@ -12,6 +12,6 @@ import type { NamedAPIResourceModel } from '../../models/utility.model';
   },
 })
 export class PokemonListComponent {
-  list = input.required<NamedAPIResourceModel[]>();
+  pokemonList = input.required<NamedAPIResourceModel[]>();
   isLoading = input(true);
 }
