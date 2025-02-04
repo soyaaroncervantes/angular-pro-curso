@@ -2,7 +2,7 @@ import { AutoMap } from '@automapper/classes';
 import { Nullable } from '../../core/utils/types.utils';
 
 export class NamedAPIResourceModel {
-  @AutoMap(() => String) name = ''
+  @AutoMap(() => String) name: Nullable<string> = null;
   @AutoMap(() => URL) url: Nullable<URL> = null;
 }
 
@@ -45,7 +45,7 @@ export class MachineVersionDetailModel {
 }
 
 export class NameModel {
-  @AutoMap(() => String) name = ''
+  @AutoMap(() => String) name: Nullable<string> = null;
   @AutoMap(() => NamedAPIResourceModel) language: Nullable<NamedAPIResourceModel> = null;
 }
 
